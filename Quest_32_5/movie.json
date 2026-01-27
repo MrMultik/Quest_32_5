@@ -1,0 +1,23 @@
+{
+  "title": "Interstellar",
+  "country": "USA",
+  "release_date": "2014-11-06",
+  "studio": "Warner Bros.",
+  "screenwriter": "Jonathan Nolan",
+  "director": "Christopher Nolan",
+  "producer": "Emma Thomas",
+  "cast": [
+    {
+      "character": "Cooper",
+      "actor": "Matthew McConaughey"
+    },
+    {
+      "character": "Amelia",
+      "actor": "Anne Hathaway"
+    },
+    {
+      "character": "Murph",
+      "actor": "Jessica Chastain"
+    }
+  ]
+}

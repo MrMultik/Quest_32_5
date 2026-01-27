@@ -1,0 +1,72 @@
+{
+  "Interstellar": {
+    "country": "USA",
+    "year": 2014,
+    "cast": [
+      {
+        "character": "Cooper",
+        "actor": "Matthew McConaughey"
+      },
+      {
+        "character": "Amelia",
+        "actor": "Anne Hathaway"
+      }
+    ]
+  },
+  "Inception": {
+    "country": "USA",
+    "year": 2010,
+    "cast": [
+      {
+        "character": "Cobb",
+        "actor": "Leonardo DiCaprio"
+      },
+      {
+        "character": "Arthur",
+        "actor": "Joseph Gordon-Levitt"
+      }
+    ]
+  },
+  "Titanic": {
+    "country": "USA",
+    "year": 1997,
+    "cast": [
+      {
+        "character": "Jack",
+        "actor": "Leonardo DiCaprio"
+      },
+      {
+        "character": "Rose",
+        "actor": "Kate Winslet"
+      }
+    ]
+  },
+  "Forrest Gump": {
+    "country": "USA",
+    "year": 1994,
+    "cast": [
+      {
+        "character": "Forrest",
+        "actor": "Tom Hanks"
+      },
+      {
+        "character": "Jenny",
+        "actor": "Robin Wright"
+      }
+    ]
+  },
+  "The Dark Knight": {
+    "country": "USA",
+    "year": 2008,
+    "cast": [
+      {
+        "character": "Batman",
+        "actor": "Christian Bale"
+      },
+      {
+        "character": "Joker",
+        "actor": "Heath Ledger"
+      }
+    ]
+  }
+}
