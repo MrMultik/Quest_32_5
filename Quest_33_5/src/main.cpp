@@ -8,8 +8,6 @@ void task3_registry();
 void task4_average();
 
 int main() {
-    setlocale(LC_ALL, "ru");
-
     int choice;
 
     do {
@@ -34,7 +32,6 @@ int main() {
             break;
         }
 
-        try {
             switch (choice) {
             case 1:
                 task1_cart();

@@ -15,7 +15,6 @@ FetchContent_MakeAvailable(nlohmann_json)
 # Полные пути к файлам
 set(QUEST_32_5_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/Quest_32_5/main.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Quest_32_5/company.proto"
 )
 
 set(QUEST_33_5_SOURCES

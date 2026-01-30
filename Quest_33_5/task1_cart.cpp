@@ -2,7 +2,6 @@
 #include <map>
 #include <stdexcept>
 #include <limits>
-#include <string>
 
 void task1_cart() {
     std::map<std::string, int> warehouse;
@@ -51,15 +50,12 @@ void task1_cart() {
                     std::cout << p.first << " : " << p.second << " øò.\n";
                 }
             }
-            continue;
-        }
 
         if (cmd == "store") {
             std::cout << "\nÑêëàä:\n";
             for (auto& p : warehouse) {
                 std::cout << p.first << " : " << p.second << " øò.\n";
             }
-            continue;
         }
 
         if (cmd == "add" || cmd == "remove") {
