@@ -1,127 +1,135 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <stdexcept>
 #include <vector>
-#include <algorithm>
 #include <limits>
 
-enum SectorType { EMPTY, FISH, BOOT };
+using namespace std;
 
-void task2_fishing() {
-    std::srand(static_cast<unsigned>(std::time(nullptr)));
+class FishCaught : public exception {
+private:
+    int attempts;
+public:
+    FishCaught(int attempts) : attempts(attempts) {}
 
-    std::vector<SectorType> field(9, EMPTY);
+    const char* what() const noexcept override {
+        return "Fish caught!";
+    }
 
-    int fishPos = std::rand() % 9;
-    field[fishPos] = FISH;
+    int getAttempts() const { return attempts; }
+};
 
-    int bootsPlaced = 0;
-    while (bootsPlaced < 3) {
-        int pos = std::rand() % 9;
-        if (field[pos] == EMPTY) {
-            field[pos] = BOOT;
-            bootsPlaced++;
+class BootCaught : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Caught a boot!";
+    }
+};
+
+class FishingGame {
+private:
+    vector<string> field;
+    int fishPosition;
+    vector<int> bootPositions;
+    int attempts;
+
+public:
+    FishingGame() : attempts(0) {
+        field.resize(9, "empty");
+
+        srand(static_cast<unsigned>(time(nullptr)));
+
+        fishPosition = rand() % 9;
+        field[fishPosition] = "fish";
+
+        bootPositions.clear();
+        for (int i = 0; i < 3; i++) {
+            int pos;
+            do {
+                pos = rand() % 9;
+            } while (field[pos] != "empty");
+
+            bootPositions.push_back(pos);
+            field[pos] = "boot";
         }
     }
 
-    std::cout << "\nИгра 'Рыбалка'\n";
-    std::cout << "Попробуйте поймать рыбу, избегая сапогов.\n";
-    std::cout << "Всего 9 секторов (0-8). У вас максимум 9 попыток.\n\n";
+    void castRod(int sector) {
+        if (sector < 1 || sector > 9) {
+            throw invalid_argument("Sector 1-9 only");
+        }
 
-    std::vector<bool> opened(9, false);
-    int attempts = 0;
-    bool gameOver = false;
-    bool caughtFish = false;
+        int index = sector - 1;
+        attempts++;
 
-    while (!gameOver) {
-        std::cout << "Текущее поле: ";
-        for (int i = 0; i < 9; ++i) {
-            if (opened[i]) {
-                switch (field[i]) {
-                case FISH: std::cout << "[Р] "; break;
-                case BOOT: std::cout << "[С] "; break;
-                case EMPTY: std::cout << "[ ] "; break;
-                }
+        cout << "Sector " << sector << ": ";
+
+        if (index == fishPosition) {
+            cout << "Fish!\n";
+            throw FishCaught(attempts);
+        }
+
+        for (int bootPos : bootPositions) {
+            if (index == bootPos) {
+                cout << "Boot!\n";
+                throw BootCaught();
+            }
+        }
+
+        cout << "Empty\n";
+    }
+
+    void showField() const {
+        cout << "\nField:\n";
+        for (int i = 0; i < 9; i++) {
+            cout << "Sector " << (i + 1) << ": ";
+            if (field[i] == "fish" || field[i] == "boot") {
+                cout << "[?]";
             }
             else {
-                std::cout << "[" << i << "] ";
+                cout << "empty";
             }
+            cout << "\n";
         }
-        std::cout << "\n\n";
+    }
+};
 
-        int sector;
-        std::cout << "Введите номер сектора (0-8): ";
+void task2() {
+    cout << "Fishing Game\n";
+    cout << "Catch fish, avoid boots\n";
 
-        while (!(std::cin >> sector) || sector < 0 || sector > 8) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Некорректный ввод. Введите число от 0 до 8: ";
+    FishingGame game;
+
+    while (true) {
+        try {
+            game.showField();
+
+            int sector;
+            cout << "\nSector (1-9): ";
+            cin >> sector;
+
+            game.castRod(sector);
+
         }
-
-        if (opened[sector]) {
-            std::cout << "Этот сектор уже открыт. Выберите другой.\n";
-            continue;
-        }
-
-        attempts++;
-        opened[sector] = true;
-
-        switch (field[sector]) {
-        case FISH:
-            std::cout << "\nПОЗДРАВЛЯЕМ! Вы поймали рыбу!\n";
-            std::cout << "Количество попыток: " << attempts << "\n";
-            caughtFish = true;
-            gameOver = true;
+        catch (const FishCaught& e) {
+            cout << e.what() << "\n";
+            cout << "Attempts: " << e.getAttempts() << "\n";
+            cout << "Game over!\n";
             break;
 
-        case BOOT:
-            std::cout << "\nВы поймали сапог. Игра окончена.\n";
-            std::cout << "Попыток сделано: " << attempts << "\n";
-            gameOver = true;
+        }
+        catch (const BootCaught& e) {
+            cout << e.what() << "\n";
+            cout << "Game over!\n";
             break;
 
-        case EMPTY:
-            std::cout << "\nПусто. Продолжайте ловить.\n";
-
-            if (attempts % 3 == 0) {
-                int minDist = 10;
-                for (int i = 0; i < 9; ++i) {
-                    if (!opened[i] && field[i] == FISH) {
-                        int dist = abs(i - sector);
-                        if (dist < minDist) minDist = dist;
-                    }
-                }
-                if (minDist <= 2) {
-                    std::cout << "Подсказка: рыба где-то рядом.\n";
-                }
-            }
-            break;
+        }
+        catch (const exception& e) {
+            cerr << "Error: " << e.what() << "\n";
         }
 
-        if (attempts >= 9 && !gameOver) {
-            std::cout << "\nВы использовали все попытки. Игра окончена.\n";
-            gameOver = true;
-        }
+        cin.clear();
+        cin.ignore(10000, '\n');
     }
-
-    std::cout << "\nИтоги игры:\n";
-    std::cout << "Все поле:\n";
-    for (int i = 0; i < 9; ++i) {
-        switch (field[i]) {
-        case FISH: std::cout << "[Р] "; break;
-        case BOOT: std::cout << "[С] "; break;
-        case EMPTY: std::cout << "[ ] "; break;
-        }
-        if ((i + 1) % 3 == 0) std::cout << "\n";
-    }
-
-    if (caughtFish) {
-        std::cout << "\nВы выиграли! Рыба поймана за " << attempts << " попыток.\n";
-    }
-    else {
-        std::cout << "\nВы проиграли. Рыба так и не поймана.\n";
-        std::cout << "Рыба была в секторе: " << fishPos << "\n";
-    }
-
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

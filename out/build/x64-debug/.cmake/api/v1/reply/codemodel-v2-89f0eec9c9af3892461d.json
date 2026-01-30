@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Practices",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Quest_33_5::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Quest_33_5-Debug-a909ee6be25ab54be741.json",
+					"name" : "Quest_33_5",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task1_cart::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task1_cart-Debug-2ce7687d2ffd21a32bba.json",
+					"name" : "task1_cart",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task2_fishing::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task2_fishing-Debug-60ff1b1b1fc1206f22c5.json",
+					"name" : "task2_fishing",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task3_registry::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task3_registry-Debug-158f81c63dcad108fe9e.json",
+					"name" : "task3_registry",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task4_average::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task4_average-Debug-f491bb16764f5f86e757.json",
+					"name" : "task4_average",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug",
+		"source" : "C:/Users/User/Desktop/C/Test/Quest_32_5"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

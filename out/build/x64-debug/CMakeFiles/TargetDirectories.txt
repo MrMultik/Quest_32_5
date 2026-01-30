@@ -1,0 +1,7 @@
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/Quest_33_5.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/task1_cart.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/task2_fishing.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/task3_registry.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/task4_average.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/C/Test/Quest_32_5/out/build/x64-debug/CMakeFiles/rebuild_cache.dir

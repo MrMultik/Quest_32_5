@@ -1,66 +1,65 @@
 #include <iostream>
-#include <locale>
-#include <limits>  // для std::numeric_limits
+#include <limits>
 
-void task1_cart();
-void task2_fishing();
-void task3_registry();
-void task4_average();
+using namespace std;
+
+void task1();
+void task2();
+void task3();
+void task4();
 
 int main() {
     int choice;
 
     do {
-        std::cout << "Практическая работа 33.5\n";
-        std::cout << "1 — Корзина магазина\n";
-        std::cout << "2 — Игра Рыбалка\n";
-        std::cout << "3 — Реестр (шаблоны)\n";
-        std::cout << "4 — Среднее арифметическое\n";
-        std::cout << "0 — Выход\n";
-        std::cout << "Выберите задание: ";
+        cout << "\nPractice Work 33.5\n";
+        cout << "Select task to execute:\n";
+        cout << "1. Shopping Cart\n";
+        cout << "2. Fishing Game\n";
+        cout << "3. Registry\n";
+        cout << "4. Average Calculator\n";
+        cout << "5. Exit Program\n";
+        cout << "\nEnter your choice (1-5): ";
 
-        // Проверка ввода
-        if (!(std::cin >> choice)) {
-            std::cin.clear(); // сброс флагов ошибок
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // очистка буфера
-            std::cout << "Неверный ввод! Пожалуйста, введите число.\n";
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input! Please enter a number 1-5.\n";
             continue;
         }
 
-        if (choice == 0) {
-            std::cout << "Завершение программы...\n";
+        switch (choice) {
+        case 1:
+            cout << "\nTask 1: Shopping Cart\n";
+            task1();
+            cout << "\nReturning to main menu...\n";
             break;
+        case 2:
+            cout << "\nTask 2: Fishing Game\n";
+            task2();
+            cout << "\nReturning to main menu...\n";
+            break;
+        case 3:
+            cout << "\nTask 3: Registry\n";
+            task3();
+            cout << "\nReturning to main menu...\n";
+            break;
+        case 4:
+            cout << "\nTask 4: Average Calculator\n";
+            task4();
+            cout << "\nReturning to main menu...\n";
+            break;
+        case 5:
+            cout << "\nExiting program. Goodbye!\n";
+            break;
+        default:
+            cout << "Invalid choice! Please enter a number 1-5.\n";
         }
 
-            switch (choice) {
-            case 1:
-                task1_cart();
-                break;
-            case 2:
-                task2_fishing();
-                break;
-            case 3:
-                task3_registry();
-                break;
-            case 4:
-                task4_average();
-                break;
-            default:
-                std::cout << "Неверный выбор. Попробуйте снова.\n";
-            }
-        }
-        catch (const std::exception& e) {
-            std::cout << "Ошибка: " << e.what() << std::endl;
-        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        // Ожидание нажатия Enter перед возвратом в меню
-        if (choice >= 1 && choice <= 4) {
-            std::cout << "\nНажмите Enter для возврата в меню...";
-            std::cin.ignore(); // игнорируем оставшийся символ новой строки
-            std::cin.get();    // ждем нажатия Enter
-        }
-
-    } while (true);  // бесконечный цикл, пока не выберем 0
+    } while (choice != 5);
 
     return 0;
 }
